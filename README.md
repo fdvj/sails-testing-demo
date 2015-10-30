@@ -1,2 +1,3 @@
-# sails-testing-demo
-Functional Testing SailsJS APIs
+# sails-testing
+
+a [Sails](http://sailsjs.org) application
