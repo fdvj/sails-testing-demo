@@ -1,9 +1,12 @@
 {
-  "name": "sails-testing",
-  "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
-  "keywords": [],
+  "name": "sails-testing-demo",
+  "version": "1.0.0",
+  "description": "A SailsJS API testing demo",
+  "keywords": [
+    "sails",
+    "functional testing",
+    "testing"
+  ],
   "dependencies": {
     "ejs": "~0.8.4",
     "grunt": "0.4.2",
@@ -26,15 +29,20 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "grunt test"
   },
   "main": "app.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/fernando/sails-testing.git"
   },
-  "author": "fernando",
-  "license": "",
+  "author": "Fernando De Vega",
+  "homepage": "https://github.com/fdvj/sails-testing-demo",
+  "license": "GNU GPLv2",
+  "bugs": {
+    "url": "https://github.com/fdvj/sails-testing-demo/issues"
+  },
   "devDependencies": {
     "blanket": "^1.1.9",
     "chai": "^3.4.0",
