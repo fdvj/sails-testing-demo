@@ -14,7 +14,24 @@ describe('Posts endpoint', function(){
       
       request(server)
         .get('/posts')
-        .expect(200, fixtures.posts, done);
+        .expect(200, [
+          {
+            id: 1,
+            title: 'My First Novel',
+            content: 'This is my novel. The end.',
+            author: 'William Shakespeare',
+            createdAt: '2015-11-01T12:00:00.001Z',
+            updatedAt: '2015-11-01T12:00:00.001Z'
+          },
+          {
+            id: 2,
+            title: 'My first poem',
+            content: 'Where is the question mark!"#$%&/()=?',
+            author: 'Sappho',
+            createdAt: '2015-11-01T12:00:00.002Z',
+            updatedAt: '2015-11-01T12:00:00.00Z'
+          }
+        ], done);
     });
 
   });
@@ -44,7 +61,14 @@ describe('Posts endpoint', function(){
           // Verify that the correct counter was increased
           if (!Counters.increase.calledWith(1)) { throw Error('Counter for post should have increased'); }
         })
-        .expect(200, fixtures.posts[0], done);
+        .expect(200, {
+          id: 1,
+          title: 'My First Novel',
+          content: 'This is my novel. The end.',
+          author: 'William Shakespeare',
+          createdAt: '2015-11-01T12:00:00.001Z',
+          updatedAt: '2015-11-01T12:00:00.001Z'
+        }, done);
     });
 
   });
@@ -65,7 +89,11 @@ describe('Posts endpoint', function(){
       stub.returns(false);
       request(server)
         .post('/posts')
-        .send(fixtures.posts[0])
+        .send({
+          title: 'My First Novel',
+          content: 'This is my novel. The end.',
+          author: 'William Shakespeare'
+        })
         .expect(function(res){
           // Verify post was not created
           if (Posts.create.called) { throw Error('Post should have not been created'); }
@@ -78,8 +106,19 @@ describe('Posts endpoint', function(){
       wolfpack.setCreateResults(fixtures.posts[0]);
       request(server)
         .post('/posts')
-        .send(fixtures.posts[0])
-        .expect(201, fixtures.posts[0], done);
+        .send({
+          title: 'My First Novel',
+          content: 'This is my novel. The end.',
+          author: 'William Shakespeare'
+        })
+        .expect(201, {
+          id: 1,
+          title: 'My First Novel',
+          content: 'This is my novel. The end.',
+          author: 'William Shakespeare',
+          createdAt: '2015-11-01T12:00:00.001Z',
+          updatedAt: '2015-11-01T12:00:00.001Z'
+        }, done);
     });
   });
 
