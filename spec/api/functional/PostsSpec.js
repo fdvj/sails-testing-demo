@@ -120,6 +120,21 @@ describe('Posts endpoint', function(){
           updatedAt: '2015-11-01T12:00:00.001Z'
         }, done);
     });
+
+    it("should return 500 and the error message if there is an unknown error", function(done){
+      stub.returns(true);
+      var errorMessage = 'Some error happened';
+      wolfpack.setErrors(errorMessage);
+
+      request(server)
+        .post('/posts')
+        .send({
+          title: 'My First Novel',
+          content: 'This is my novel. The end.',
+          author: 'William Shakespeare'
+        })
+        .expect(500, {error: errorMessage}, done);
+    });
   });
 
 });

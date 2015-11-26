@@ -37,7 +37,7 @@ module.exports = {
     return Posts.create(body).then(function(post){
       return res.json(201, post);
     }).catch(function(err){
-      return res.json(500, err);
+      return res.json(500, {error: err.originalError});
     });
   }
 	
